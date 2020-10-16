@@ -1,14 +1,18 @@
 --two columns, month and deplaned passengers
 with deplaned as(
-    select * from {{ref('stg_airport_aus')}}
+    select * from {{ref('stg_airport_sfo')}}
 ),
 
 passengers as (
     select 
-        date_trunc('month', date_day) as date_month
-        ,domestic_deplaned_passengers_aus
-        --,intl_deplaned_passengers
-        from deplaned
+        date_month
+        --,category1
+        ,sum(passengers) as passengers_sfo
+    from deplaned
+    group by date_month, category1
+    having category1 = 'visitors'
+    order by category1, date_month
+
 ),
 
 final as (
