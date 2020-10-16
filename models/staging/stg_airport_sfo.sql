@@ -17,7 +17,7 @@ final as (
     select 
     to_date(date_month, 'YYYYMM') as date_month
     ,segmentation
-    ,replace(passengers,',','')::numeric as passengers
+    ,replace(passengers,',','')::float as passengers
     ,case when segmentation = 'Deplaned' then 'visitors'
         else 'traveling'
         end category1

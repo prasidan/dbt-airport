@@ -6,7 +6,7 @@ with airbnb as (
 final as (
     select 
         date_trunc('month', date_day) as date_month
-        ,count(listing_id) as reviews_monthly_sfo
+        ,count(listing_id)::float as reviews_monthly_sfo
         --use case when to add AUS column
         --this data is daily, so aggregate by month
         --sum reviews by month from airbnb

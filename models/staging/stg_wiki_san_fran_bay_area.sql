@@ -5,7 +5,7 @@ with source  as (
 renamed as (
     select 
         substring(source.timestamp,1,8) as date_month
-        ,views
+        ,views::float as views_wiki_san_fran_bay_area
 
     from source
 ),
@@ -13,7 +13,7 @@ renamed as (
 final as (
     select 
        to_date(renamed.date_month, 'YYYYMMDD') as date_month
-       ,views
+       ,views_wiki_san_fran_bay_area
     from renamed
 )
 
